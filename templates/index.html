@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% set commandcount = command_list|length %}
+{% block full_title %}4Bit{% endblock %}
+{% set random_subtitles = [
+'4Bit best bot',
+'invite it pls',
+'yay',
+'it has cool commands i guess',
+'Hosted on [Repl.it!](https://repl.it)',
+'Subscribe to Pewdiepie!',
+'Gotta catch \'em all!',
+'made by mat',
+'Python is the only real developer language!',
+'single quotes over double quotes!',
+'Less than %s commands!' % (commandcount+1)|string,
+'Only %s commands!' % commandcount|string,
+'Duckduckgo > Google',
+'Uses AIOhttp!',
+'Uses Discord.py rewrite!',
+'wait so i can write anything i want here?',
+'24/7!',
+'Now 5x more lit than before!',
+'RuntimeError: You\'ve been gnomed!',
+':ok_hand:',
+'Try the %s%s command!' % (prefix,command_list|list|random),
+'Sponsored by no one!',
+'🙃',
+'Because why not',
+'Vote on [discordbots.org](https://discordbots.org/bot/386333909362933772/vote)!',
+'Currently online!',
+'99.9% uptime!',
+'Modularized!',
+'Dab on them haters!',
+'foobar',
+'Placeholder text!',
+'Less than %s servers!' % (server_count+1)|string,
+'More than %s servers!' % (server_count-1)|string,
+'sudo rm -rf / --no-preserve-root',
+'no u',
+'Certified organic!',
+'Hand made!',
+'4Bit™',
+'Copyrighted!',
+'Doing Alt+F4 will give you free diamonds',
+'Invite it today! Or tomorrow, or the day after tomorrow.',
+'Arrays start at 0!',
+'Yes, the website uses Bootstrap.',
+"please invite my bot i'm desperate i'll do anything please",
+'epic style',
+'[mat does dev!](https://matdoes.dev)',
+'Arrays start at -2 apparently\n`["first", "last"][-2] == "first"`'
+]
+%}
+{%
+set random_subtitles = random_subtitles + ['Over %s unique unfunny subtitles!' % random_subtitles|length|string]
+%}
+{% block subtitle %}{{ random_subtitles | random }}{% endblock %}
+
+{% block head %}
+	{{ super() }}
+	<script src="/index.js"></script>
+{% endblock %}
+
+{% block header_content %}
+<div class="text-center">
+	<a href="/invite" class="btn btn-outline-primary btn-lg" id="inviteBtn">Invite</a>
+	<a href="#commands" class="btn btn-outline-info btn-lg">Commands</a>
+</div>
+{% endblock %}
+{% block content %}
+	<h3 class="ml-3 pt-5">Commands</h3>
+	<div class="ml-3">
+		{% for section in help_parsed %}
+		<div class="ml-2">
+			<h4 id="{{ section|lower }}-commands">{{ section }}</h4>
+			{% set section_commands = help_parsed[section] %}
+			{% for cmd in section_commands %}
+			<div class="ml-2" id="{{ cmd.name|lower }}-command">
+				<h5>{{ cmd.name }} <span class="text-secondary font-weight-light">{{ cmd.usage }}</span></h5>
+				<p class="ml-1">{% markdown %}{{ cmd.longdesc }}{% endmarkdown %}</p>
+			</div>
+			{% endfor %}
+		</div>
+		{% endfor %}
+	</div>
+{% endblock %}

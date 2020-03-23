@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% block head %}
+	<title>{% block full_title %}{% block title %}Index{% endblock %} - 4Bit{% endblock %}</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="/main.css">
+	<link rel="shortcut icon" type="image/png" href="/4bit.png"/>
+	<meta charset="UTF-8">
+	<meta name="description" content="{% block description %}4Bit Discord Bot. It has commands and stuff i guess{% endblock %}">
+	<meta name="keywords" content="{% block keywords %}4bit,4bit discord,discord,discord bot,4bit discord bot,utility discord bot,fun discord bot,moderation discord bot,image discord bot,it has commands and stuff i guess,best discord bot,fourbit,fourbit bot,4bitbot,4bit bot,4bitbot.tk,four bit bot,fourbitbot,fourbit discord,fourbitbot discord,fourbit discord bot{% endblock %}">
+	<meta name="author" content="{% block author %}mat{% endblock %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+	<meta name="msvalidate.01" content="A9A707E08BBF89790B637CF5F38FBA78" />
+	<meta http-equiv="content-language" content="en">
+	{% endblock %}
+</head>
+<body>
+	{% block body %}
+		{% block top %}
+		<header>
+			<div id="header-content">
+				<h1 class="large-title">
+					{% if self.title() != 'Index' %}
+						{{ self.title() }}
+					{% else %}
+						{{ self.full_title() }}
+					{% endif %}</h1>
+				<p class="subtitle font-italic">
+					{% markdown %}{% block subtitle %}{% endblock %}{% endmarkdown %}
+				</p>
+				{% block header_content %}{% endblock %}
+			</div>	
+		</header>
+		{% endblock %}
+		<div id="content">
+			<div id="commands">
+				{% block content %}
+				<p>Nothing here yet, check back later.</p>
+				{% endblock %}
+			</div>
+		</div>
+		<div id="footer">
+			{% block footer %}
+			&copy; Copyright 2019 by <a href="{{website_url}}">mat</a>.
+			{% endblock %}
+		</div>
+	{% endblock %}
+</body>
+</html>

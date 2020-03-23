@@ -1,0 +1,36 @@
+html {
+	height: 100%;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+#content {
+	padding-bottom: 2rem;
+	margin-left: 1rem;
+}
+#footer {
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	padding: 1rem;
+	text-align: center;
+}
+body {
+	min-height: 100%;
+	position: relative;
+}
+header {
+	min-height: 100vh;
+	background-color: rgb(187, 241, 255);
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+#header-content {
+	margin: 0 auto;
+	perspective: 2px;
+}
+.large-title {
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 5rem;	
+}
