@@ -386,6 +386,9 @@ website.start_server(
 
 run_start_time = time.time()
 
+if not os.getenv('token'):
+	raise RuntimeError('Token missing')
+
 client.run(os.getenv('token'))
 
 print('closed')

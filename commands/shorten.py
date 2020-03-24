@@ -20,7 +20,8 @@ fh.setFormatter(formatter)
 logger.addHandler(fh)
 logger.addHandler(ch)
 
-bitly_token = os.environ.get('BITLY_TOKEN')
+bitly_token = os.getenv('BITLY_TOKEN')
+
 
 async def gen_shorten_embed(url: str, shortened: str) -> discord.Embed:
 	dif = (int(len(url)) - int(len(shortened)))
@@ -60,6 +61,8 @@ async def bitly(msgdata):
 	'''Generates a Bit.ly Shortlink.	'''
 	message = msgdata['message']
 	args = msgdata['args']
+	if not bitly_token:
+		return message.channel.send('`BITLY_TOKEN` not found in .env file')
 	ctx = message.channel
 	if len(args) == 0:
 		message.channel.send('Please specify a URL to shorten.	')

@@ -201,7 +201,10 @@ async def eightball(msgdata):
 	await message.channel.send(embed=embed)
 	if answer in eightball_positive:
 		await one_time_money(message, 'eightball', 40, 'You earned **$40**!')
-ytkeys = os.getenv('ytkeys').split(',')
+
+ytkeys = os.getenv('ytkeys')
+if ytkeys:
+	ytkeys = ytkeys.split(',')
 
 
 async def get_pewdiepie_embed(triedkeys=[]):
@@ -261,6 +264,8 @@ async def get_pewdiepie_embed(triedkeys=[]):
 async def pewdiepie(msgdata):
 	message = msgdata['message']
 	has_voted = msgdata['has_voted']
+	if not ytkeys:
+		return message.channel.send('ytkeys not found in env file')
 	has_voted = await has_voted(message.author)
 
 	embed = await get_pewdiepie_embed()

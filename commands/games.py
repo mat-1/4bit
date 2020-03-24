@@ -208,6 +208,8 @@ async def ask(msgdata):
 	appid = os.getenv('wolframalpha')
 	message = msgdata['message']
 	q = msgdata['content']
+	if not appid:
+		return message.channel.send('`wolframalpha` not found in .env file')
 	timeout = aiohttp.ClientTimeout(total=10)
 	async with message.channel.typing():
 		print(q)
