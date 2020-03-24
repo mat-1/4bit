@@ -378,7 +378,6 @@ async def on_message(message):
 
 async def bg_tasks(*args):
 	print('started yeet')
-	client.run(os.getenv('token'))
 
 print('starting')
 website.start_server(
